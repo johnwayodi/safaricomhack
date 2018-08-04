@@ -1,23 +1,27 @@
 package com.johnwayodi.careerRegistration.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "JOB_REGISTRATION")
 public class JobRegistration extends AbstractModel{
-    private Boolean appliedFor;
-    @OneToOne
+
+    @Column(name = "Booked",nullable = false)
+    private Boolean booked;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Applicant_Id")
     private JobApplicant jobApplicant;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Job_Id")
     private Job job;
 
-    public Boolean getAppliedFor() {
-        return appliedFor;
+    public Boolean getBooked() {
+        return booked;
     }
 
-    public void setAppliedFor(Boolean appliedFor) {
-        this.appliedFor = appliedFor;
+    public void setBooked(Boolean booked) {
+        this.booked = booked;
     }
 
     public JobApplicant getJobApplicant() {

@@ -15,12 +15,6 @@
 <body>
 
 <table>
-    private String name;
-    private String description;
-    private String jobType;
-    private int yearsOfExperience;
-    private String educationLevel;
-    private Boolean status;
     <tr>
         <th>Name</th>
         <th>Description</th>

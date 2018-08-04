@@ -13,7 +13,7 @@
 <body>
 <h2>Find Job</h2>
 
-<form action="findFlights" method="post">
+<form action="searchJobs" method="post">
     Enter Job Type:<input type="text" name="jobType"/>
     <input type="submit" value="search"/>
 </form>

@@ -1,16 +1,29 @@
 package com.johnwayodi.careerRegistration.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
+@Table(name = "JOB")
 public class Job extends AbstractModel{
-    private String name;
-    private String description;
-    private String jobType;
-    private int yearsOfExperience;
-    private String educationLevel;
-    private Boolean status;
+
+    @Column(name = "Job_Name",nullable = false) private String name;
+    @Column(name = "Description",nullable = false) private String description;
+    @Column(name = "Job_Type",nullable = false) private String jobType;
+    @Column(name = "Years_Of_Experience",nullable = false) private int yearsOfExperience;
+    @Column(name = "Education_Level",nullable = false) private String educationLevel;
+    @Column(name = "Status",nullable = false) private Boolean status;
+
+    @Temporal(TemporalType.DATE)@Column(name = "Interview_Date",nullable = false)
+    private Calendar interviewDate;
+
+    @Temporal(TemporalType.TIME)@Column(name = "Start_Time",nullable = false)
+    private Date interviewStartTime;
+
+    @Temporal(TemporalType.TIME)@Column(name = "End_Time",nullable = false)
+    private Date interviewStopTime;
 
     public String getName() {
         return name;
@@ -58,5 +71,29 @@ public class Job extends AbstractModel{
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public Calendar getInterviewDate() {
+        return interviewDate;
+    }
+
+    public void setInterviewDate(Calendar interviewDate) {
+        this.interviewDate = interviewDate;
+    }
+
+    public Date getInterviewStartTime() {
+        return interviewStartTime;
+    }
+
+    public void setInterviewStartTime(Date interviewStartTime) {
+        this.interviewStartTime = interviewStartTime;
+    }
+
+    public Date getInterviewStopTime() {
+        return interviewStopTime;
+    }
+
+    public void setInterviewStopTime(Date interviewStopTime) {
+        this.interviewStopTime = interviewStopTime;
     }
 }

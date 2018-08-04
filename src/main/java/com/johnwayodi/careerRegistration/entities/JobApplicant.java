@@ -1,17 +1,27 @@
 package com.johnwayodi.careerRegistration.entities;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "JOB_APPLICANT")
 public class JobApplicant extends AbstractModel{
 
+    @Column(name = "First_Name",nullable = false)
     private String firstName;
+    @Column(name = "Last_Name",nullable = false)
     private String lastName;
+    @Column(name = "Email",nullable = false)
     private String email;
+    @Column(name = "Password",nullable = false)
     private String password;
+    @Column(name = "Phone",nullable = false)
     private String phone;
+    @Column(name = "Education_Level",nullable = false)
     private String educationLevel;
+    @Column(name = "Years_Of_Experience",nullable = false)
     private int yearsOfExperience;
 
     public String getFirstName() {

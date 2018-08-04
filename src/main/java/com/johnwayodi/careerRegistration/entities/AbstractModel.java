@@ -8,8 +8,11 @@ import java.util.UUID;
 public class AbstractModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(name = "Id", nullable = false)
     private UUID id;
+
+    @Column(name = "Date_Created",nullable = false)
     private ZonedDateTime dateCreated;
 
     public UUID getId() {
