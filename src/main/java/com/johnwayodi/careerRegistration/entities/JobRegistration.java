@@ -6,11 +6,19 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class JobRegistration extends AbstractModel{
-
+    private Boolean appliedFor;
     @OneToOne
     private JobApplicant jobApplicant;
     @OneToOne
     private Job job;
+
+    public Boolean getAppliedFor() {
+        return appliedFor;
+    }
+
+    public void setAppliedFor(Boolean appliedFor) {
+        this.appliedFor = appliedFor;
+    }
 
     public JobApplicant getJobApplicant() {
         return jobApplicant;

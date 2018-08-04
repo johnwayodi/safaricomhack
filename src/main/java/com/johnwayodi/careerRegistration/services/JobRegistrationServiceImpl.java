@@ -10,6 +10,8 @@ import com.johnwayodi.careerRegistration.repos.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class JobRegistrationServiceImpl implements JobRegistrationService {
 
@@ -36,5 +38,11 @@ public class JobRegistrationServiceImpl implements JobRegistrationService {
         jobRegistration.setAppliedFor(true);
 
         return jobRegistrationRepository.save(jobRegistration);
+    }
+
+    @Override
+    public void deregisterForInterview(UUID id) {
+        JobRegistration jobRegistration = jobRegistrationRepository.findById(id).get();
+        jobRegistrationRepository.delete(jobRegistration);
     }
 }

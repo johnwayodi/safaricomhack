@@ -29,7 +29,7 @@ public class JobServiceImpl implements JobService{
     }
 
     @Override
-    public void deleteLocation(Job job) {
+    public void deleteJob(Job job) {
         jobRepository.delete(job);
     }
 
@@ -41,5 +41,10 @@ public class JobServiceImpl implements JobService{
     @Override
     public List<Job> getAllJobs() {
         return jobRepository.findAll();
+    }
+
+    @Override
+    public List<Job> getJobsByType(String jobType) {
+        return jobRepository.findByJobType(jobType);
     }
 }
