@@ -21,6 +21,11 @@ public class JobController {
     }
 
 
+    @RequestMapping("/showSearchJobs")
+    public String showSearchJobs(){
+        return "searchJobs";
+    }
+
     @RequestMapping("/searchJobs")
     public String searchJobs(@RequestParam("jobType") String jobType,
                              ModelMap modelMap){

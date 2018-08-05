@@ -23,11 +23,10 @@
         <b>Years of Experience</b>: ${selectedJob.yearsOfExperience}<br/>
         <b>Education Level</b>: ${selectedJob.educationLevel}<br/>
 
-        <h2>Applicant Details:</h2>
-        Applicant Email: <input type="text" name="applicantEmail"/>
+        <b>Enter your Email</b>: <input type="text" name="applicantEmail"/>
 
         <input type="hidden" name="jobId" value="${selectedJob.id}"/>
-        <input type="submit" value="confirm"/>
+        <input type="submit" value="Apply"/>
     </pre>
 </form>
 

@@ -43,6 +43,7 @@ public class JobApplicantController {
                         ModelMap modelMap){
         JobApplicant jobApplicant = jobApplicantRepository.findByEmail(email);
         if (jobApplicant.getPassword().equals(password)){
+            modelMap.addAttribute("userInfo", jobApplicant);
             return "searchJobs";
         }else {
             modelMap.addAttribute("msg", "Incorrect Password!! Please Try again");

@@ -27,7 +27,7 @@ A spring-boot project that mimics a job application portal.
 ## API Usage
 The application also exposes Restful endpoints from which CRUD operations can be performed. The API endpoints are:
 * `localhost:8080/jobs/`
-* `localhost:8080/jobappicants/`
+* `localhost:8080/jobapplicants/`
 
 **[Postman](https://www.getpostman.com/)** is used as it allows easy testing of apis. 
 #### 1. Adding a Job Example

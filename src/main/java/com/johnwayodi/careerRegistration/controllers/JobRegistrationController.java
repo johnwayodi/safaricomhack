@@ -5,11 +5,12 @@ import com.johnwayodi.careerRegistration.entities.Job;
 import com.johnwayodi.careerRegistration.entities.JobRegistration;
 import com.johnwayodi.careerRegistration.repos.JobRepository;
 import com.johnwayodi.careerRegistration.services.JobRegistrationService;
-import com.johnwayodi.careerRegistration.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
@@ -44,5 +45,4 @@ public class JobRegistrationController {
 
         return "applicationSuccess";
     }
-
 }
