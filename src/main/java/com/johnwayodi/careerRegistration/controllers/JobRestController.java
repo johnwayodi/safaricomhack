@@ -5,6 +5,8 @@ import com.johnwayodi.careerRegistration.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +22,7 @@ public class JobRestController {
 
     @RequestMapping(value = "/jobs/", method = RequestMethod.POST)
     public Job saveJob(@RequestBody Job job){
+        job.setDateCreated(ZonedDateTime.now());
         return jobService.saveJob(job);
         }
 
@@ -44,3 +47,4 @@ public class JobRestController {
         return jobService.getAllJobs();
     }
 }
+
