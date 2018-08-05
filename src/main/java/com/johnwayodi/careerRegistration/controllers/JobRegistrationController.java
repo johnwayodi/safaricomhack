@@ -3,6 +3,7 @@ package com.johnwayodi.careerRegistration.controllers;
 import com.johnwayodi.careerRegistration.dto.JobRegistrationRequest;
 import com.johnwayodi.careerRegistration.entities.Job;
 import com.johnwayodi.careerRegistration.entities.JobRegistration;
+import com.johnwayodi.careerRegistration.repos.JobRepository;
 import com.johnwayodi.careerRegistration.services.JobRegistrationService;
 import com.johnwayodi.careerRegistration.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +18,20 @@ public class JobRegistrationController {
 
     private final JobRegistrationService jobRegistrationService;
 
-    private final JobService jobService;
+    private final JobRepository jobRepository;
 
     @Autowired
-    public JobRegistrationController(JobRegistrationService jobRegistrationService, JobService jobService) {
+    public JobRegistrationController(JobRegistrationService jobRegistrationService, JobRepository jobRepository) {
         this.jobRegistrationService = jobRegistrationService;
-        this.jobService = jobService;
+        this.jobRepository = jobRepository;
     }
 
     @RequestMapping("/showApplication")
     public String showApplication(@RequestParam("jobId") UUID jobId,
                                           ModelMap modelMap){
-        Job job = jobService.getJobById(jobId);
+        Job job = jobRepository.getOne(jobId);
         modelMap.addAttribute("selectedJob", job);
-        return "completeApplication";
+        return "showApplication";
     }
 
     @RequestMapping(value = "completeApplication", method = RequestMethod.POST)

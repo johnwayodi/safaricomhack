@@ -37,21 +37,12 @@
         <td>${job.educationLevel}</td>
         <td>${job.status}</td>
         <c:set var = "interviewDate" value = "${job.interviewDate}" />
-        <td>
-            <fmt:formatDate value="${interviewDate}" type="date" pattern="yyyy-MM-dd"/>
-        </td>
+        <td><fmt:formatDate value="${interviewDate}" type="date" pattern="yyyy-MM-dd"/></td>
         <c:set var = "startTime" value = "${job.interviewStartTime}"/>
-        <td>
-            <fmt:formatDate value="${startTime}" type="time" pattern="HH:mm:ss"/>
-        </td>
-
+        <td><fmt:formatDate value="${startTime}" type="time" pattern="HH:mm:ss"/></td>
         <c:set var = "stopTime" value = "${job.interviewStopTime}"/>
-        <td>
-            <fmt:formatDate value="${stopTime}" type="time" pattern="HH:mm:ss"/>
-        </td>
-        <td>
-            <a href="showApplication?jobName=${job.name}">Select</a>
-        </td>
+        <td><fmt:formatDate value="${stopTime}" type="time" pattern="HH:mm:ss"/></td>
+        <td><a href="showApplication?jobId=${job.id}">Select</a></td>
     </tr>
     </c:forEach>
 </table>

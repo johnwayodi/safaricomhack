@@ -14,14 +14,19 @@
 
 <h2>Apply for Job</h2>
 
-Job ID: ${selectedjob.id}<br/>
-
 <form action="completeApplication" method="post">
     <pre>
+        <h2>Job Details:</h2>
+        <b>Job Name</b>: ${selectedJob.name}<br/>
+        <b>Description</b>: ${selectedJob.description}<br/>
+        <b>Job Type</b>: ${selectedJob.jobType}<br/>
+        <b>Years of Experience</b>: ${selectedJob.yearsOfExperience}<br/>
+        <b>Education Level</b>: ${selectedJob.educationLevel}<br/>
+
         <h2>Applicant Details:</h2>
         Applicant Email: <input type="text" name="applicantEmail"/>
 
-        <input type="hidden" name="jobId" value="${job.id}"/>
+        <input type="hidden" name="jobId" value="${selectedJob.id}"/>
         <input type="submit" value="confirm"/>
     </pre>
 </form>
