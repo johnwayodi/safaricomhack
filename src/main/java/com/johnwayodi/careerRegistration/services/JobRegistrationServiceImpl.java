@@ -10,6 +10,7 @@ import com.johnwayodi.careerRegistration.repos.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Service
@@ -35,8 +36,8 @@ public class JobRegistrationServiceImpl implements JobRegistrationService {
         JobRegistration jobRegistration = new JobRegistration();
         jobRegistration.setJobApplicant(jobApplicant);
         jobRegistration.setJob(job);
-        jobRegistration.setAppliedFor(true);
-
+        jobRegistration.setBooked(true);
+        jobRegistration.setDateCreated(ZonedDateTime.now());
         return jobRegistrationRepository.save(jobRegistration);
     }
 

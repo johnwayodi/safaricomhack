@@ -1,5 +1,7 @@
 package com.johnwayodi.careerRegistration.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Calendar;
@@ -16,12 +18,16 @@ public class Job extends AbstractModel{
     @Column(name = "Education_Level",nullable = false) private String educationLevel;
     @Column(name = "Status",nullable = false) private Boolean status;
 
-    @Temporal(TemporalType.DATE)@Column(name = "Interview_Date",nullable = false)
-    private Calendar interviewDate;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "Interview_Date",nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date interviewDate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Temporal(TemporalType.TIME)@Column(name = "Start_Time",nullable = false)
     private Date interviewStartTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Temporal(TemporalType.TIME)@Column(name = "End_Time",nullable = false)
     private Date interviewStopTime;
 
@@ -73,11 +79,11 @@ public class Job extends AbstractModel{
         this.status = status;
     }
 
-    public Calendar getInterviewDate() {
+    public Date getInterviewDate() {
         return interviewDate;
     }
 
-    public void setInterviewDate(Calendar interviewDate) {
+    public void setInterviewDate(Date interviewDate) {
         this.interviewDate = interviewDate;
     }
 
@@ -96,4 +102,6 @@ public class Job extends AbstractModel{
     public void setInterviewStopTime(Date interviewStopTime) {
         this.interviewStopTime = interviewStopTime;
     }
+
+
 }

@@ -14,7 +14,7 @@
 <h2>Log In to access portal: </h2>
 <form action="login" method="post">
     <pre>
-        Username :<input type="text" name="email"/>
+        Email :<input type="text" name="email"/>
         Password :<input type="password" name="password"/>
         <input type="submit" value="Log In"/>
         ${msg}

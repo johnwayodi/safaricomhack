@@ -16,7 +16,7 @@
     <pre>
         First Name: <input type="text" name="firstName"/>
         Last Name: <input type="text" name="lastName"/>
-        User Name: <input type="text" name="email"/>
+        Email: <input type="text" name="email"/>
         Password: <input type="password" name="password"/>
         Phone: <input type="text" name="phone"/>
         Education Level: <input type="text" name="educationLevel"/>

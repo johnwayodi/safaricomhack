@@ -7,7 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--<%@page isELIgnored="false" %>--%>
 <html>
 <head>
     <title>Title</title>
@@ -15,13 +16,17 @@
 <body>
 
 <table>
+
     <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Years of Experience</th>
-        <th>Education level</th>
-        <th>Status</th>
+        <th>Name :</th>
+        <th>Description :</th>
+        <th>Type :</th>
+        <th>Years of Experience :</th>
+        <th>Education level :</th>
+        <th>Status :</th>
+        <th>Interview Date :</th>
+        <th>Start Time :</th>
+        <th>End Time :</th>
     </tr>
     <c:forEach items="${jobList}" var="job">
     <tr>
@@ -31,7 +36,22 @@
         <td>${job.yearsOfExperience}</td>
         <td>${job.educationLevel}</td>
         <td>${job.status}</td>
-        <td><a href="showApplication?jobName=${job.name}">Select</a></td>
+        <c:set var = "interviewDate" value = "${job.interviewDate}" />
+        <td>
+            <fmt:formatDate value="${interviewDate}" type="date" pattern="yyyy-MM-dd"/>
+        </td>
+        <c:set var = "startTime" value = "${job.interviewStartTime}"/>
+        <td>
+            <fmt:formatDate value="${startTime}" type="time" pattern="HH:mm:ss"/>
+        </td>
+
+        <c:set var = "stopTime" value = "${job.interviewStopTime}"/>
+        <td>
+            <fmt:formatDate value="${stopTime}" type="time" pattern="HH:mm:ss"/>
+        </td>
+        <td>
+            <a href="showApplication?jobName=${job.name}">Select</a>
+        </td>
     </tr>
     </c:forEach>
 </table>

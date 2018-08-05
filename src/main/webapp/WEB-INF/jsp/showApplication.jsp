@@ -14,7 +14,7 @@
 
 <h2>Apply for Job</h2>
 
-Job ID: ${job.id}<br/>
+Job ID: ${selectedjob.id}<br/>
 
 <form action="completeApplication" method="post">
     <pre>
