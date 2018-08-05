@@ -4,23 +4,48 @@ a spring boot project that mimics a job application portal.
 #### Configuration and Deployment
 
 ##### Application
-clone the Repository:
-
+1. Clone the Repository:
 `git clone https://github.com/johnwayodi/safaricomhack.git`  
 
-Next install dependencies:
+2. Next install dependencies:
 `mvn package`
 
-Run the Project:
+3. Run the Project:
 `mvn spring-boot:run`
 
-Access the project on your browser using url `localhost:8080/`
+4. Access the project on your browser using url `localhost:8080/`
 
 ##### H2 Database
-Ensure that the spring project is up and running.
+1. Ensure that the spring project is up and running.
 
-The H2 database can be accessed on url `localhost:8080/console`
+2. The H2 database can be accessed on url `localhost:8080/console`
 
-In the login page, change the **JDBC URL** to `jdbc:h2:file:./data/testdb` as that is the url configured in the **application.properties**
+3. In the login page, change the **JDBC URL** to `jdbc:h2:file:./data/testdb` as that is the url configured in the **application.properties**
 
-After that press the **connect** to access the dashboard.
+4. After that press the **connect** to access the dashboard.
+
+#### Usage
+The application also exposes Restful endpoints from which CRUD operations can be performed. The API endpoints are:
+* `localhost:8080/jobs/`
+* `localhost:8080/jobappicants/`
+
+To test the APIs postman is used. 
+##### Posting a job to the database
+1. Ensure the spring application is running
+2. Open Postman, change the method to **POST** and set the url field to `localhost:8080/jobs/`
+3. In the **Header** section, set Content-Type to *application/json*
+4. Input the Job Details you wish to add to database in the **Body** section after selecting the *raw* property
+
+Example Job Structure:
+    
+    {
+    	"name":"android developer",
+    	"description":"design and develop android apps",
+    	"jobType":"animation engineer",
+    	"yearsOfExperience":5,
+    	"educationLevel":"bachelors",
+    	"status":true,
+    	"interviewDate":"2018-09-01",
+    	"interviewStartTime":"2018-09-01 09:00:59",
+    	"interviewStopTime": "2018-09-01 12:00:59"
+    }
