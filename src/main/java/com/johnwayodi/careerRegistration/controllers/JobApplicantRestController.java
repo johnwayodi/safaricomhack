@@ -3,14 +3,13 @@ package com.johnwayodi.careerRegistration.controllers;
 import com.johnwayodi.careerRegistration.entities.JobApplicant;
 import com.johnwayodi.careerRegistration.services.JobApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@RestController
 public class JobApplicantRestController {
     private final JobApplicantService jobApplicantService;
 
@@ -21,6 +20,7 @@ public class JobApplicantRestController {
 
     @RequestMapping(value = "/jobapplicants/", method = RequestMethod.POST)
     public JobApplicant saveJobApplicant(@RequestBody JobApplicant jobApplicant){
+        jobApplicant.setDateCreated(ZonedDateTime.now());
         return jobApplicantService.saveJobApplicant(jobApplicant);
     }
 

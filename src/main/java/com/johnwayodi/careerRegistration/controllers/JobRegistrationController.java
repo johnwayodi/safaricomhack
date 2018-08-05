@@ -29,7 +29,7 @@ public class JobRegistrationController {
     public String showApplication(@RequestParam("jobId") UUID jobId,
                                           ModelMap modelMap){
         Job job = jobService.getJobById(jobId);
-        modelMap.addAttribute("job", job);
+        modelMap.addAttribute("selectedJob", job);
         return "completeApplication";
     }
 

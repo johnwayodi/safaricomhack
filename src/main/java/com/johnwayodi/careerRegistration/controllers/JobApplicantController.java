@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
+
 @Controller
 public class JobApplicantController {
 
@@ -25,6 +27,7 @@ public class JobApplicantController {
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public String register(@ModelAttribute("user") JobApplicant jobApplicant){
+        jobApplicant.setDateCreated(ZonedDateTime.now());
         jobApplicantRepository.save(jobApplicant);
         return "login";
     }
@@ -42,7 +45,7 @@ public class JobApplicantController {
         if (jobApplicant.getPassword().equals(password)){
             return "searchJobs";
         }else {
-            modelMap.addAttribute("msg", "Incorrect password!! Try again");
+            modelMap.addAttribute("msg", "Incorrect Password!! Please Try again");
         }
         return "login";
     }
