@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Careers</title>
   </head>
   <body>
-  $END$
+  <h2>Welcome to Careers.</h2>
+
+  <p>For new users please Register <a href="showRegistration">here</a></p>
+  <p>Existing users proceed to login <a href="showLogin">here</a></p>
   </body>
 </html>
