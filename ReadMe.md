@@ -67,3 +67,15 @@ Example JobApplicant Structure:
     	"educationLevel":"Bachelors",
     	"yearsOfExperience": 2
     }
+    
+## Testing
+**NOTE**: The database is already created in folder **data** and will be loaded automatically.
+
+After Logging in you will be requested to enter the Job Type to search
+
+Job Types already in Database include: 
+* api engineer
+* ux engineer
+* data engineer
+* systems engineer
+
