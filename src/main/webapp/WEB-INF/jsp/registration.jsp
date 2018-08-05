@@ -17,12 +17,12 @@
         First Name: <input type="text" name="firstName"/>
         Last Name: <input type="text" name="lastName"/>
         Email: <input type="text" name="email"/>
-        Password: <input type="password" name="password"/>
         Phone: <input type="text" name="phone"/>
         Education Level: <input type="text" name="educationLevel"/>
         Years of Experience: <input type="text" name="yearsOfExperience"/>
-    Confirm Password: <input type="password" name="confirmPassword"/>
-    <input type="submit" value="Register"/>
+        Password: <input type="password" name="password"/>
+        Confirm Password: <input type="password" name="confirmPassword"/>
+        <input type="submit" value="Register"/>
     </pre>
 </form>
 
