@@ -24,13 +24,13 @@ A spring-boot project that mimics a job application portal.
 
 4. Press **connect** to access the H2 Dashboard.
 
-### API Usage
+## API Usage
 The application also exposes Restful endpoints from which CRUD operations can be performed. The API endpoints are:
 * `localhost:8080/jobs/`
 * `localhost:8080/jobappicants/`
 
 **[Postman](https://www.getpostman.com/)** is used as it allows easy testing of apis. 
-#### Adding a Job Example
+#### 1. Adding a Job Example
 1. Ensure the spring application is running
 2. Open Postman, change the method to **POST** and set the url field to `localhost:8080/jobs/`
 3. In the **Header** section, set Content-Type to *application/json*
@@ -50,7 +50,7 @@ Example Job Structure:
     	"interviewStopTime": "2018-09-01 12:00:59"
     }
 
-#### Adding a JobApplicant Example
+#### 2. Adding a JobApplicant Example
 1. Ensure the spring application is running
 2. Open Postman, change the method to **POST** and set the url field to `localhost:8080/jobapplicants/`
 3. In the **Header** section, set Content-Type to *application/json*
