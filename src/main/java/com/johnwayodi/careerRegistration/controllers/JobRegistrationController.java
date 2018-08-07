@@ -5,6 +5,8 @@ import com.johnwayodi.careerRegistration.entities.Job;
 import com.johnwayodi.careerRegistration.entities.JobRegistration;
 import com.johnwayodi.careerRegistration.repos.JobRepository;
 import com.johnwayodi.careerRegistration.services.JobRegistrationService;
+import com.johnwayodi.careerRegistration.util.JobHasMaximumParticipantsException;
+import com.johnwayodi.careerRegistration.util.MaximumJobsAppliedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,11 +39,18 @@ public class JobRegistrationController {
 
     @RequestMapping(value = "completeApplication", method = RequestMethod.POST)
     public String completeReservation(JobRegistrationRequest request, ModelMap modelMap){
-        JobRegistration jobRegistration = jobRegistrationService.registerForInterview(request);
+        JobRegistration jobRegistration = null;
+        try {
+            jobRegistration = jobRegistrationService.registerForInterview(request);
+            modelMap.addAttribute(
+                    "msg",
+                    "Interview Created Successfully, id is "+ jobRegistration.getId());
 
-        modelMap.addAttribute(
-                "msg",
-                "Interview Created Successfully, id is "+ jobRegistration.getId());
+        } catch (MaximumJobsAppliedException | JobHasMaximumParticipantsException e) {
+            modelMap.addAttribute(
+                    "msg", e.getMessage());
+            e.printStackTrace();
+        }
 
         return "applicationSuccess";
     }

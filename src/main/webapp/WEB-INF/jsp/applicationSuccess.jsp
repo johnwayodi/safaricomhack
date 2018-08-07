@@ -12,6 +12,8 @@
 </head>
 <body>
 
-<p>Application completed successfullly.</p>
+${msg}
+
+<p>Go Back to Job Search <a href="showSearchJobs">here</a></p>
 </body>
 </html>
