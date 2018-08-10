@@ -1,50 +1,65 @@
 package com.johnwayodi.careerRegistration.controllers;
 
 import com.johnwayodi.careerRegistration.entities.Job;
-import com.johnwayodi.careerRegistration.services.JobService;
+import com.johnwayodi.careerRegistration.repos.JobRepository;
+import com.johnwayodi.careerRegistration.util.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 public class JobRestController {
 
-    private final JobService jobService;
+    private final JobRepository jobRepository;
 
     @Autowired
-    public JobRestController(JobService jobService) {
-        this.jobService = jobService;
+    public JobRestController(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
     }
 
-    @RequestMapping(value = "/jobs/", method = RequestMethod.POST)
-    public Job saveJob(@RequestBody Job job){
+    @GetMapping("/jobs/{id}")
+    public Job getJobById(@PathVariable("id") UUID jobId){
+        return jobRepository.findById(jobId).map(job ->
+                jobRepository.getOne(jobId)).orElseThrow(()->
+                new ResourceNotFoundException("Job with id: " + jobId+ " not found in database"));
+    }
+
+    @GetMapping("/jobs/")
+    public List<Job> getAllJobs(){
+        return jobRepository.findAll();
+    }
+
+    @PostMapping("/jobs/")
+    public Job createJob(@RequestBody Job job){
         job.setDateCreated(ZonedDateTime.now());
-        return jobService.saveJob(job);
+        return jobRepository.save(job);
         }
 
-    @RequestMapping(value = "/jobs/", method = RequestMethod.PUT)
-    public Job updateJob(@RequestBody Job job){
-        return jobService.updateJob(job);
+    @PutMapping("/jobs/{id}")
+    public Job updateJob(@PathVariable("id") UUID  jobId, @RequestBody Job jobTemp){
+        return jobRepository.findById(jobId).map(job ->{
+            job.setName(jobTemp.getName());
+            job.setDescription(jobTemp.getDescription());
+            job.setJobType(jobTemp.getJobType());
+            job.setEducationLevel(jobTemp.getEducationLevel());
+            job.setInterviewDate(jobTemp.getInterviewDate());
+            job.setInterviewStartTime(jobTemp.getInterviewStartTime());
+            job.setInterviewStopTime(jobTemp.getInterviewStopTime());
+            return jobRepository.save(job);
+        }).orElseThrow(()-> new ResourceNotFoundException("Job with id: " + jobId + " not found in database"));
     }
 
-    @RequestMapping(value = "/jobs/{id}", method = RequestMethod.DELETE)
-    public void deleteJob(@PathVariable("id") UUID id){
-        Job job = jobService.getJobById(id);
-        jobService.deleteJob(job);
+    @DeleteMapping("/jobs/{id}")
+    public ResponseEntity<?> deleteJob(@PathVariable("id") UUID jobId){
+        return jobRepository.findById(jobId).map(job ->{
+            jobRepository.delete(job);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(()-> new ResourceNotFoundException("Job with id: " + jobId + " not found in database"));
     }
 
-    @RequestMapping(value = "/jobs/{id}", method = RequestMethod.GET)
-    public Job getJobById(@PathVariable("id") UUID id){
-        return jobService.getJobById(id);
-    }
-
-    @RequestMapping(value = "/jobs/", method = RequestMethod.GET)
-    public List<Job> getAllJobs(){
-        return jobService.getAllJobs();
-    }
 }
 

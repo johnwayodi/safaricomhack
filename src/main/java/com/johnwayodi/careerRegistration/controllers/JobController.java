@@ -1,7 +1,7 @@
 package com.johnwayodi.careerRegistration.controllers;
 
 import com.johnwayodi.careerRegistration.entities.Job;
-import com.johnwayodi.careerRegistration.services.JobService;
+import com.johnwayodi.careerRegistration.repos.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,11 +13,11 @@ import java.util.List;
 @Controller
 public class JobController {
 
-    private final JobService jobService;
+    private final JobRepository jobRepository;
 
     @Autowired
-    public JobController(JobService jobService) {
-        this.jobService = jobService;
+    public JobController(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
     }
 
 
@@ -29,7 +29,7 @@ public class JobController {
     @RequestMapping("/searchJobs")
     public String searchJobs(@RequestParam("jobType") String jobType,
                              ModelMap modelMap){
-        List<Job> jobList = jobService.getJobsByType(jobType);
+        List<Job> jobList = jobRepository.findByJobType(jobType);
         modelMap.addAttribute("jobList", jobList);
         return "showJobs";
     }

@@ -42,13 +42,16 @@ public class JobRegistrationController {
         JobRegistration jobRegistration = null;
         try {
             jobRegistration = jobRegistrationService.registerForInterview(request);
-            modelMap.addAttribute(
-                    "msg",
+            modelMap.addAttribute("msg",
                     "Interview Created Successfully, id is "+ jobRegistration.getId());
 
-        } catch (MaximumJobsAppliedException | JobHasMaximumParticipantsException e) {
-            modelMap.addAttribute(
-                    "msg", e.getMessage());
+        } catch (MaximumJobsAppliedException e) {
+            e = new MaximumJobsAppliedException("You have reached the maximum number of applications");
+            modelMap.addAttribute("msg",e.getMessage());
+            e.printStackTrace();
+        } catch (JobHasMaximumParticipantsException e){
+            e = new JobHasMaximumParticipantsException("Job has maximum number of Applicants");
+            modelMap.addAttribute("msg",e.getMessage());
             e.printStackTrace();
         }
 
