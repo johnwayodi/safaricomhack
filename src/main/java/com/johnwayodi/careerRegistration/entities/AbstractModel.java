@@ -1,5 +1,7 @@
 package com.johnwayodi.careerRegistration.entities;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -9,6 +11,7 @@ public class AbstractModel {
 
     @Id
     @GeneratedValue
+    @Type(type = "uuid-binary")
     @Column(name = "Id", nullable = false)
     private UUID id;
 
