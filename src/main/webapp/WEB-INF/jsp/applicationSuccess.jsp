@@ -14,6 +14,6 @@
 
 ${msg}
 
-<p>Go Back to Job Search <a href="showSearchJobs">here</a></p>
+<p>Go Back to Login <a href="login">here</a></p>
 </body>
 </html>

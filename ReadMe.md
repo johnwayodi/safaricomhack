@@ -73,9 +73,4 @@ Example JobApplicant Structure:
 
 After Logging in you will be requested to enter the Job Type to search
 
-Job Types already in Database include: 
-* api engineer
-* ux engineer
-* data engineer
-* systems engineer
 

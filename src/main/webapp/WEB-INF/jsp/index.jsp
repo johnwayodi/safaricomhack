@@ -13,7 +13,7 @@
   <body>
   <h2>Welcome to Careers.</h2>
 
-  <p>For new users please Register <a href="showRegistration">here</a></p>
-  <p>Existing users proceed to login <a href="showLogin">here</a></p>
+  <p>For new users please Register <a href="register">here</a></p>
+  <p>Existing users proceed to login <a href="login">here</a></p>
   </body>
 </html>
