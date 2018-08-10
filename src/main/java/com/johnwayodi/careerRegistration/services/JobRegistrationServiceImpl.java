@@ -22,7 +22,7 @@ public class JobRegistrationServiceImpl implements JobRegistrationService {
     private final JobApplicantRepository jobApplicantRepository;
     private final JobRepository jobRepository;
     private final JobRegistrationRepository jobRegistrationRepository;
-    private static final int MAXIMUM_NUMBER_OF_APPLICANTIONS = 3;
+    private static final int MAXIMUM_NUMBER_OF_APPLICATIONS = 3;
     private static final int MAXIMUM_NUMBER_OF_APPLICANTS = 20;
 
     @Autowired
@@ -40,7 +40,7 @@ public class JobRegistrationServiceImpl implements JobRegistrationService {
         List<JobRegistration> jobsRegisteredByApplicant = jobRegistrationRepository.findAllByJobApplicantEquals(jobApplicant);
         List<JobRegistration> applicationsForJob = jobRegistrationRepository.findAllByJobEquals(job);
 
-        if (jobsRegisteredByApplicant.size() < MAXIMUM_NUMBER_OF_APPLICANTIONS){
+        if (jobsRegisteredByApplicant.size() < MAXIMUM_NUMBER_OF_APPLICATIONS){
             if (applicationsForJob.size() < MAXIMUM_NUMBER_OF_APPLICANTS){
 
                 JobRegistration jobRegistration = new JobRegistration();
@@ -63,5 +63,4 @@ public class JobRegistrationServiceImpl implements JobRegistrationService {
         JobRegistration jobRegistration = jobRegistrationRepository.findById(id).get();
         jobRegistrationRepository.delete(jobRegistration);
     }
-
 }
