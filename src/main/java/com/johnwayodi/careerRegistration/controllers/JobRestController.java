@@ -28,12 +28,12 @@ public class JobRestController {
                 new ResourceNotFoundException("Job with id: " + jobId+ " not found in database"));
     }
 
-    @GetMapping("/jobs/")
+    @GetMapping("/jobs")
     public List<Job> getAllJobs(){
         return jobRepository.findAll();
     }
 
-    @PostMapping("/jobs/")
+    @PostMapping("/jobs")
     public Job createJob(@RequestBody Job job){
         job.setDateCreated(ZonedDateTime.now());
         return jobRepository.save(job);

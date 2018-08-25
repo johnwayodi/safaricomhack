@@ -3,11 +3,12 @@ package com.johnwayodi.careerRegistration.entities;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @MappedSuperclass
-public class AbstractModel {
+public class AbstractModel implements Serializable {
 
     @Id
     @GeneratedValue

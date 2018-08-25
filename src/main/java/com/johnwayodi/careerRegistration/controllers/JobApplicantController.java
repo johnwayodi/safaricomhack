@@ -6,12 +6,14 @@ import com.johnwayodi.careerRegistration.entities.JobRegistration;
 import com.johnwayodi.careerRegistration.repos.JobApplicantRepository;
 import com.johnwayodi.careerRegistration.repos.JobRegistrationRepository;
 import com.johnwayodi.careerRegistration.repos.JobRepository;
-import com.johnwayodi.careerRegistration.services.JobRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class JobApplicantController {
         JobApplicant jobApplicant = jobApplicantRepository.findByEmail(email);
         if (jobApplicant.getPassword().equals(password)){
 
-            List<JobRegistration> jobsAlreadyApplied = jobRegistrationRepository.findAllByJobApplicantEquals(jobApplicant);
+            List<JobRegistration> jobsAlreadyApplied = jobRegistrationRepository.findAllByJobApplicantEquals(jobApplicant, Pageable.unpaged()).getContent();
             jobsBooked.addAttribute("jobsApplied", jobsAlreadyApplied);
 
             Map<String, List<Job>> listOfJobTypes = jobsByType(jobRepository.findAll().stream());

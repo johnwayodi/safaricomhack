@@ -29,6 +29,12 @@ The application also exposes Restful endpoints from which CRUD operations can be
 * `localhost:8080/jobs/`
 * `localhost:8080/jobapplicants/`
 
+A list of jobs which the Applicant has applied for:
+* `localhost:8080/jobapplicants/{applicantId}/jobs`
+
+A list of Applicants who have applied for a Job:
+* `localhost:8080/jobs/{jobId}/applicants`  
+
 **[Postman](https://www.getpostman.com/)** is used as it allows easy testing of apis. 
 #### 1. Adding a Job Example
 1. Ensure the spring application is running
@@ -68,7 +74,7 @@ Example JobApplicant Structure:
     	"yearsOfExperience": 2
     }
     
-## Testing
+## Portal Testing
 **NOTE**: The database is already created in folder **data** and will be loaded automatically.
 
 After Logging in you will be requested to enter the Job Type to search

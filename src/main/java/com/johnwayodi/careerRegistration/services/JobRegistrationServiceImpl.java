@@ -9,7 +9,10 @@ import com.johnwayodi.careerRegistration.repos.JobRegistrationRepository;
 import com.johnwayodi.careerRegistration.repos.JobRepository;
 import com.johnwayodi.careerRegistration.util.JobHasMaximumParticipantsException;
 import com.johnwayodi.careerRegistration.util.MaximumJobsAppliedException;
+import com.johnwayodi.careerRegistration.util.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
@@ -37,11 +40,15 @@ public class JobRegistrationServiceImpl implements JobRegistrationService {
 
         JobApplicant jobApplicant = jobApplicantRepository.findByEmail(request.getApplicantEmail());
         Job job = jobRepository.getOne(request.getJobId());
-        List<JobRegistration> jobsRegisteredByApplicant = jobRegistrationRepository.findAllByJobApplicantEquals(jobApplicant);
-        List<JobRegistration> applicationsForJob = jobRegistrationRepository.findAllByJobEquals(job);
 
-        if (jobsRegisteredByApplicant.size() < MAXIMUM_NUMBER_OF_APPLICATIONS){
-            if (applicationsForJob.size() < MAXIMUM_NUMBER_OF_APPLICANTS){
+        long jobsRegisteredByApplicant = jobRegistrationRepository.findAllByJobApplicantEquals(jobApplicant,
+                Pageable.unpaged()).getTotalElements();
+
+        long applicationsForJob = jobRegistrationRepository.findAllByJobEquals(job,
+                Pageable.unpaged()).getTotalElements();
+
+        if (jobsRegisteredByApplicant < MAXIMUM_NUMBER_OF_APPLICATIONS){
+            if (applicationsForJob < MAXIMUM_NUMBER_OF_APPLICANTS){
 
                 JobRegistration jobRegistration = new JobRegistration();
                 jobRegistration.setJobApplicant(jobApplicant);
@@ -63,4 +70,21 @@ public class JobRegistrationServiceImpl implements JobRegistrationService {
         JobRegistration jobRegistration = jobRegistrationRepository.findById(id).get();
         jobRegistrationRepository.delete(jobRegistration);
     }
+
+    @Override
+    public Page<JobRegistration> getJobsForApplicant(UUID applicantId, Pageable pageable) {
+
+        return jobApplicantRepository.findById(applicantId).map(jobApplicant ->
+                jobRegistrationRepository.findAllByJobApplicantEquals(jobApplicant,pageable)).orElseThrow(()->
+                new ResourceNotFoundException("Applicant with id: " + applicantId + " not found in database"));
+    }
+
+    @Override
+    public Page<JobRegistration> getApplicantsForJob(UUID jobId, Pageable pageable) {
+
+        return jobRepository.findById(jobId).map(job ->
+                jobRegistrationRepository.findAllByJobEquals(job,pageable)).orElseThrow(()->
+                new ResourceNotFoundException("Job with id: " + jobId + " not found in database"));
+    }
+
 }
