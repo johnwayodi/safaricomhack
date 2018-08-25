@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,14 +25,14 @@ public class JobRegistrationRestController {
     }
 
     @GetMapping("/jobapplicants/{applicantId}/jobs")
-    public Page<Job> getJobsForApplicant(@PathVariable("applicantId") UUID applicantId,
+    public List<Job> getJobsForApplicant(@PathVariable("applicantId") UUID applicantId,
                                          Pageable pageable){
-        return registrationService.getJobsForApplicant(applicantId, pageable).map(JobRegistration::getJob);
+        return registrationService.getJobsForApplicant(applicantId, pageable).map(JobRegistration::getJob).getContent();
     }
 
     @GetMapping("/jobs/{jobId}/applicants")
-    public Page<JobApplicant> getApplicantsForJob(@PathVariable("jobId") UUID jobId,
+    public List<JobApplicant> getApplicantsForJob(@PathVariable("jobId") UUID jobId,
                                                   Pageable pageable){
-        return registrationService.getApplicantsForJob(jobId, pageable).map(JobRegistration::getJobApplicant);
+        return registrationService.getApplicantsForJob(jobId, pageable).map(JobRegistration::getJobApplicant).getContent();
     }
 }
