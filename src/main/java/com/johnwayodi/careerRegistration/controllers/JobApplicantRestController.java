@@ -21,7 +21,7 @@ public class JobApplicantRestController {
     }
 
     @GetMapping("/jobapplicants/{id}")
-    public JobApplicant getJobById(@PathVariable("id") UUID applicantId){
+    public JobApplicant getJobApplicantById(@PathVariable("id") UUID applicantId){
         return jobApplicantRepository.findById(applicantId).map(jobApplicant ->
                 jobApplicantRepository.getOne(applicantId)).orElseThrow(()->
                 new ResourceNotFoundException("Applicant with id " + applicantId + " not found in database"));
@@ -39,7 +39,7 @@ public class JobApplicantRestController {
     }
 
     @PutMapping("/jobapplicants/{id}")
-    public JobApplicant updateJob(@PathVariable("id") UUID applicantId, @RequestBody JobApplicant jobApplicantTemp){
+    public JobApplicant updateJobApplicant(@PathVariable("id") UUID applicantId, @RequestBody JobApplicant jobApplicantTemp){
         return jobApplicantRepository.findById(applicantId).map(jobApplicant -> {
             jobApplicant.setFirstName(jobApplicantTemp.getFirstName());
             jobApplicant.setLastName(jobApplicantTemp.getLastName());
@@ -54,7 +54,7 @@ public class JobApplicantRestController {
     }
 
     @DeleteMapping("/jobapplicants/{id}")
-    public ResponseEntity<?> deleteJob(@PathVariable("id") UUID applicantId){
+    public ResponseEntity<?> deleteJobApplicant(@PathVariable("id") UUID applicantId){
         return jobApplicantRepository.findById(applicantId).map(jobApplicant ->{
             jobApplicantRepository.delete(jobApplicant);
             return ResponseEntity.ok().build();
